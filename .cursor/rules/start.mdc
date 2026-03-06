@@ -1,0 +1,16 @@
+---
+description: 副業診断アプリの起動方法
+alwaysApply: true
+---
+
+# 起動ルール
+
+このプロジェクトは日本語パス（D:\99_Webアプリ\月純利益100万円以上稼げるアプリ）にあり、Cursor のターミナルが日本語パスでエラーになる。
+
+## 起動コマンド
+
+- **working_directory**: C:\dev
+- **command**: cmd /c C:\dev\start-fukugyo.cmd
+- **background**: true
+
+`C:\dev\start-fukugyo.cmd` が存在しない場合は、まず `cmd /c C:\dev\setup-fukugyo.cmd` を実行する（一度だけ。C:\dev\setup-fukugyo.cmd はジャンクションとランチャーを作成する）。
