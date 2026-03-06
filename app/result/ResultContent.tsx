@@ -104,7 +104,21 @@ export default function ResultContent() {
           ))}
         </div>
 
-        <div className="no-print mt-12 flex flex-wrap items-center justify-center gap-4">
+        <div className="no-print mt-12 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`副業診断で「${top.name}」がおすすめと診断されました！💰 #副業 #副業診断 https://fukugyo-shindan.vercel.app`)}`}
+            target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-4 py-2 bg-black text-white text-sm font-bold rounded-xl hover:bg-gray-800 transition-colors"
+          >
+            𝕏 でシェア
+          </a>
+          <a
+            href={`https://line.me/R/msg/text/?${encodeURIComponent(`副業診断で「${top.name}」がおすすめと診断されました！💰 https://fukugyo-shindan.vercel.app`)}`}
+            target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-4 py-2 bg-[#06C755] text-white text-sm font-bold rounded-xl hover:bg-[#05b04c] transition-colors"
+          >
+            LINE でシェア
+          </a>
           <button
             onClick={() => window.print()}
             className="text-sm px-4 py-2 rounded-xl bg-slate-700 text-slate-200 hover:bg-slate-600 border border-slate-600 transition-all"
