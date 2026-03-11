@@ -4,15 +4,7 @@ import { useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { SIDE_JOBS, type SideJobId } from '@/lib/data';
-
-async function startCheckout() {
-  const res = await fetch('/api/stripe/checkout', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-  });
-  const data = await res.json();
-  if (data.url) window.location.href = data.url;
-}
+import PayjpModal from '@/components/PayjpModal';
 
 const STORAGE_KEY = 'fukugyo-checklist';
 
@@ -47,6 +39,7 @@ export default function ChecklistPage() {
 
   const [progress, setProgress] = useState<Record<number, boolean>>({});
   const [isPremium, setIsPremium] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     fetch('/api/auth/status').then((r) => r.json()).then((d) => setIsPremium(d.isPremium));
@@ -85,11 +78,19 @@ export default function ChecklistPage() {
             副業開始から月収3万円達成まで、ステップバイステップでサポートします。
           </p>
           <button
-            onClick={startCheckout}
+            onClick={() => setShowModal(true)}
             className="w-full max-w-xs mx-auto block px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold text-lg"
           >
             プレミアムで解除する（¥980/月）
           </button>
+          {showModal && (
+            <PayjpModal
+              publicKey={process.env.NEXT_PUBLIC_PAYJP_PUBLIC_KEY!}
+              planLabel="副業デビュー診断 プレミアム ¥980/月（チェックリスト・テンプレート全解放）"
+              onSuccess={() => { setShowModal(false); setIsPremium(true); }}
+              onClose={() => setShowModal(false)}
+            />
+          )}
           <Link href="/result" className="block text-slate-500 hover:text-slate-300 text-sm">
             ← 結果に戻る
           </Link>
