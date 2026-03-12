@@ -1,16 +1,10 @@
 "use client";
 
-import { useEffect, Suspense } from "react";
+import { Suspense } from "react";
 import Link from "next/link";
 
 function SuccessContent() {
 
-  useEffect(() => {
-    const sessionId = params.get("session_id");
-    if (sessionId) {
-      fetch(`/api/stripe/verify?session_id=${sessionId}`);
-    }
-  }, []);
 
   return (
     <div className="text-center space-y-6 max-w-md mx-auto p-6">
